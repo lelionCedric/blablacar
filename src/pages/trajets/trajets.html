@@ -1,0 +1,44 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Mes Trajets</ion-title>
+        <ion-img width="80" height="80" src=""></ion-img>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-item-group>
+        <ion-item-divider color="light">Mes trajets proposés</ion-item-divider>
+        <ion-item class="text" *ngFor="let voyage of filteredItems">
+            {{voyage.datedepart}} : {{voyage.depart | json}} <ion-icon name="arrow-round-forward"></ion-icon> {{voyage.arrive | json}}
+            <label  outline item-end icon-left>
+                {{voyage.price | json}} €
+            </label>
+            <button ion-button outline item-end icon-left color="secondary" (click)="update(voyage)">
+                <ion-icon name="refresh-circle" color="secondary"></ion-icon>
+                Update
+            </button>
+            <button ion-button outline item-end icon-left color="danger" (click)="deleteItem(voyage.$key)">
+                <ion-icon name="close" color="danger"></ion-icon>
+                Delete
+            </button>
+        </ion-item>
+        <ion-item-divider color="light">Mes trajets reservés</ion-item-divider>
+
+
+        <ion-item class="text" *ngFor="let reservation of reservationItems">
+            {{reservation.datedepart}} : {{reservation.depart | json}} <ion-icon name="arrow-round-forward"></ion-icon> {{reservation.arrive | json}}
+            <label  outline item-end icon-left>
+                {{reservation.price | json}} €
+            </label>
+
+            <button ion-button outline item-end icon-left color="danger" (click)="annuler(reservation)">
+                <ion-icon name="close" color="danger"></ion-icon>
+                Remove
+            </button>
+        </ion-item>
+
+
+    </ion-item-group>
+</ion-content>
+
+    

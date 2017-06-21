@@ -1,0 +1,56 @@
+<!--
+Generated template for the RechercherPage page.
+
+See http://ionicframework.com/docs/components/#navigation for more info on
+Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>Rechercher</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <form (ngSubmit)="submitRechercher()">
+
+        <ion-list>
+            <ion-item>
+                <ion-label >Ville départ</ion-label>
+                <ion-input type="text" value="" [(ngModel)]="voyage.villeDep" name="villeDep"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label fixed>Ville d'arrivée</ion-label>
+                <ion-input type="text" [(ngModel)]="voyage.villeArr" name="villeArr"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label fixed>Date du voyage</ion-label>
+                <ion-datetime displayFormat="YYYY-MM-DD" pickerFormat="DD/MM/YYYY" max = "2031-12-24" [(ngModel)]="voyage.dateVoy" name="dateVoy"></ion-datetime>    
+            </ion-item>
+
+            <ion-item>
+                <ion-card-content>
+                    <button ion-button>Chercher</button>
+                </ion-card-content>
+            </ion-item>
+
+        </ion-list>
+    </form>
+    <ion-list>
+        <ion-item class="text" *ngFor="let voyage of filteredItems">
+            <h2>{{voyage.depart | json}} --> {{voyage.arrive | json}} : {{voyage.price | json}}€</h2>
+            <button ion-button outline item-end icon-left color="secondary" (click)="reserver(voyage.trajet_id)">
+                <ion-icon name="calendar" color="secondary"></ion-icon>
+                Reserver
+            </button>
+
+
+            <p>
+                {{voyage.description | json}}
+            </p>
+        </ion-item>
+    </ion-list>
+</ion-content>
